@@ -1,4 +1,4 @@
-# Euklidian
+# Anleitung
 
 Zahl muss mit Null starten
 
