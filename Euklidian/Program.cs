@@ -10,19 +10,20 @@ internal class Program
 
         while (again)
         {
-            Console.WriteLine("Gebe periodische Dezimalzahl, beginnend mit 0 ein");
-            Console.WriteLine("Beispiel: 0, Komma Periode 3: 0,3");
+            Console.WriteLine("Periodische Dezimalzahl:");
             Double.TryParse(Console.ReadLine(), out number);
             Console.WriteLine("Periodenlänge:");
-            Console.WriteLine("Beispiel: 0,Komma 2 Periode 7 1 = 2");
             Int32.TryParse(Console.ReadLine(), out periodLength);
 
             calculateFraction(number, periodLength, out int numerator, out int denumerator);
 
+            Console.WriteLine("Die Bruchdarstellung lautet:");
             Console.WriteLine($"{numerator}/{denumerator}");
 
-            Console.WriteLine("Again (y/n)");
-            again = Console.ReadLine().Equals("y") ? true : false;
+            Console.WriteLine("Noch einmal? (j/n)");
+            again = Console.ReadLine().Equals("j") ? true : false;
+
+            Console.WriteLine();
         }
     }
 
