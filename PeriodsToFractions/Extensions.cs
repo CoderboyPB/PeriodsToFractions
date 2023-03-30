@@ -1,25 +1,40 @@
 ﻿namespace PeriodsToFractions;
 public static class Extensions
 {
-    public static string ToFraction(this double number, int periodLength)
+    public static string ToFraction(this double number, int periodLength = 0)
     {
+        int zaehler;
+        int nenner;
+
         int numberOfDecimalPlaces = number.ToString().Split(",")[1].Length;
-        int factorA = (int)Math.Pow(10, Convert.ToDouble(numberOfDecimalPlaces));
-        int factorB = (int)Math.Pow(10, Convert.ToDouble(numberOfDecimalPlaces - periodLength));
 
-        int numerator = (int)(number * Math.Pow(10, numberOfDecimalPlaces) - cutDecimals(number, numberOfDecimalPlaces - periodLength) * Math.Pow(10, numberOfDecimalPlaces - periodLength));
-        int denumerator = factorA - factorB;
+        if (periodLength > 0)
+        {
+            numberOfDecimalPlaces = number.ToString().Split(",")[1].Length;
+            int factorA = (int)Math.Pow(10, Convert.ToDouble(numberOfDecimalPlaces));
+            int factorB = (int)Math.Pow(10, Convert.ToDouble(numberOfDecimalPlaces - periodLength));
 
-        int ggt = ggT(numerator, denumerator);
+            zaehler = (int)(number * Math.Pow(10, numberOfDecimalPlaces) - cutDecimals(number, numberOfDecimalPlaces - periodLength) * Math.Pow(10, numberOfDecimalPlaces - periodLength));
+            nenner = factorA - factorB;
+        }
+        else
+        {
+            zaehler = (int)(number * Math.Pow(10, numberOfDecimalPlaces));
+            nenner = (int)Math.Pow(10, numberOfDecimalPlaces);
+        }
 
-        numerator /= ggt;
-        denumerator /= ggt;
+        int ggt = ggT(zaehler, nenner);
 
-        return $"{numerator}/{denumerator}";
+        // shorten fracture
+        zaehler /= ggt;
+        nenner /= ggt;
+
+        return $"{zaehler}/{nenner}";
     }
 
     private static int ggT(int a, int b) => (b == 0) ? a : ggT(b, a % b);
 
+    // Helper function to cut of decimals WITHOUT rounding
     private static double cutDecimals(double number, int v)
     {
         (string, string) parts = (Math.Truncate(number).ToString(), number.ToString().Split(",")[1].Substring(0, v));

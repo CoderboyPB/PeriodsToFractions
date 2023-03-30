@@ -1,29 +1,21 @@
-﻿namespace Euklidian;
+﻿using PeriodsToFractions;
 
-using PeriodsToFractions;
+double number;
+int periodLength;
+bool again = true;
 
-internal class Program
+while (again)
 {
-    static void Main(string[] args)
-    {
-        double number;
-        int periodLength;
-        bool again = true;
+    Console.WriteLine("Periodische Dezimalzahl:");
+    Double.TryParse(Console.ReadLine(), out number);
+    Console.WriteLine("Periodenlänge:");
+    Int32.TryParse(Console.ReadLine(), out periodLength);
 
-        while (again)
-        {
-            Console.WriteLine("Periodische Dezimalzahl:");
-            Double.TryParse(Console.ReadLine(), out number);
-            Console.WriteLine("Periodenlänge:");
-            Int32.TryParse(Console.ReadLine(), out periodLength);
+    Console.WriteLine(number.ToFraction(periodLength));
 
-            Console.WriteLine(number.ToFraction(periodLength));
+    Console.WriteLine();
+    Console.WriteLine("Noch einmal? (j/n)");
+    again = Console.ReadLine().Equals("j") ? true : false;
 
-            Console.WriteLine();
-            Console.WriteLine("Noch einmal? (j/n)");
-            again = Console.ReadLine().Equals("j") ? true : false;
-
-            Console.WriteLine();
-        }
-    }
+    Console.WriteLine();
 }
