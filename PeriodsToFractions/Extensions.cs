@@ -3,6 +3,11 @@ public static class Extensions
 {
     public static string ToFraction(this double number, int periodLength = 0)
     {
+        if(number >= 1)
+        {
+            throw new ArgumentException("Decimal number has to be smaller than 1!");
+        }
+
         int zaehler;
         int nenner;
 

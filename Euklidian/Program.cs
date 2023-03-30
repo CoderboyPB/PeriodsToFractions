@@ -6,7 +6,7 @@ bool again = true;
 
 while (again)
 {
-    Console.WriteLine("Periodische Dezimalzahl:");
+    Console.WriteLine("(Periodische) Dezimalzahl:");
     Double.TryParse(Console.ReadLine(), out number);
     Console.WriteLine("Periodenlänge:");
     Int32.TryParse(Console.ReadLine(), out periodLength);
